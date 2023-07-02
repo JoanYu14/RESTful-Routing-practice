@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新增好的學生</title>
+    <style>
+      table,
+      tr,
+      td {
+        border: 2px solid black; /* 設定2px實心黑色的外框 */
+        border-collapse: collapse; /* 讓表格的外框合併 */
+        text-align: center; /* 讓文字置中 */
+        padding: 2px; /* 讓content部分與border有2px的距離 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>成功新增學生</h1>
+    <p>以下為新增的學生<%= savedStudent.name %>的資料</p>
+
+    <table>
+      <tr>
+        <td>學生ID</td>
+        <td><%= savedStudent._id %></td>
+      </tr>
+      <tr>
+        <td>學生名稱</td>
+        <td><%= savedStudent.name %></td>
+      </tr>
+      <tr>
+        <td>學生年齡</td>
+        <td><%= savedStudent.age %></td>
+      </tr>
+      <tr>
+        <td>學生科系</td>
+        <td><%= savedStudent.major %></td>
+      </tr>
+      <tr>
+        <td>學生校內獎學金</td>
+        <td><%= savedStudent.schlarship.merit %></td>
+      </tr>
+      <tr>
+        <td>學生校外獎學金</td>
+        <td><%= savedStudent.schlarship.other %></td>
+      </tr>
+    </table>
+    <!-- 點擊這個連結就是對localhost:3000這個server中的/students這個route寄送一個GET request -->
+    <a href="/students">回到學生首頁</a>
+  </body>
+</html>

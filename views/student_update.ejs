@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>修改學生資料</title>
+  </head>
+  <body>
+    <h3>修改<%= student.name %>的資料</h3>
+    <!-- ?_method=PUT是method-overrite的語法 -->
+    <!-- 因為method-overrite的原因，所以送出這個form就是對localhost:3000這個server中的/students/student._id這個route寄送一個PUT request，因為傳到server時會先經過method-overrite的中介軟體處理 -->
+    <!-- requests的header中有Content-Type: application/x-www-form-urlencoded這項  -->
+    <form action="/students/<%= student._id%>?_method=PUT" method="POST">
+      <!-- value都預設為該學生原本的資料 -->
+      <label for="name">姓名:</label>
+      <input
+        type="text"
+        name="name"
+        required
+        minlength="2"
+        value="<%= student.name %>"
+      />
+      <label for="name">年齡:</label>
+      <input type="number" name="age" min="0" value="<%= student.age %>" />
+      <label for="major">科系:</label>
+
+      <!-- select是下拉式選單，option裡面的value就是我們要送到server的值，required是說我們一定要選一科系，因為預設為空白 -->
+      <select name="major" required>
+        <!-- 這樣預設的下拉式選單沒有值 -->
+        <option value="<%= student.major %>"><%= student.major %></option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Finance">Finance</option>
+        <option value="English">English</option>
+        <option value="Math">Math</option>
+        <option value="undecided">undecided</option>
+      </select>
+
+      <label for="merit">校內獎學金:</label>
+      <input
+        type="number"
+        name="merit"
+        value="<%= student.schlarship.merit %>"
+      />
+      <label for="other">校外獎學金:</label>
+      <input
+        type="number"
+        name="other"
+        value="<%= student.schlarship.other %>"
+      />
+
+      <!-- 按下按鈕就是送出表單到server -->
+      <button>更新學生資料</button>
+    </form>
+  </body>
+</html>

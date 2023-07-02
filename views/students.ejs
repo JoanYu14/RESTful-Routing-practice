@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>學生首頁</title>
+  </head>
+  <body>
+    <h1>學生首頁</h1>
+    <ul>
+      <!-- 用ejs語法插入js程式碼，docArr是server(app.js)給我們的物件中的屬性，值就是包含所有學生資料(物件)的一個陣列 -->
+      <!-- 這段程式碼會使html的ul標籤中有docArr.length個li標籤，a標籤的href就是對伺服器(localhost:3000)的/student/:student._id這個route寄送get request -->
+      <% studentsArr.forEach(student=>{ %>
+      <li><a href="/students/<%= student._id %>"><%= student.name %></a></li>
+      <%})%>
+    </ul>
+
+    <!-- 點擊這個連結就是對localhost:3000這個server中的/students/new這個route寄送一個GET request -->
+    <a href="/students/new">新增一個學生</a>
+  </body>
+</html>

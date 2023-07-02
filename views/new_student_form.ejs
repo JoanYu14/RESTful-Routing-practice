@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新增學生</title>
+  </head>
+  <body>
+    <h3>要新增的學生的資料</h3>
+    <!-- 送出這個form就是對localhost:3000這個server中的/students這個route寄送一個POST request -->
+    <!-- requests的header中有Content-Type: application/x-www-form-urlencoded這項  -->
+    <form action="/students" method="POST">
+      <!-- 沒設定method的話預設為GET -->
+      <label for="name">姓名:</label>
+      <input type="text" name="name" required minlength="2" />
+      <label for="name">年齡:</label>
+      <input type="number" name="age" min="0" />
+      <label for="major">科系:</label>
+
+      <!-- select是下拉式選單，option裡面的value就是我們要送到server的值，required是說我們一定要選一科系，因為預設為空白 -->
+      <select name="major" required>
+        <!-- 這樣預設的下拉式選單沒有值 -->
+        <option value=""></option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Finance">Finance</option>
+        <option value="English">English</option>
+        <option value="Math">Math</option>
+        <option value="undecided">undecided</option>
+      </select>
+
+      <label for="merit">校內獎學金:</label>
+      <input type="number" name="merit" value="0" />
+      <label for="other">校外獎學金:</label>
+      <input type="number" name="other" value="0" />
+
+      <!-- 按下按鈕就是送出表單到server -->
+      <button>新增學生</button>
+    </form>
+  </body>
+</html>
