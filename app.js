@@ -182,6 +182,20 @@ app.put("/students/:_id", async (req, res) => {
   }
 });
 
+// ==========================================================================================================================================================================================================
+// 5.刪除指定學生的資料
+// 從瀏覽器的method為POST的form提交後寄出的POST Request經過method-overrite的中介軟體處理後變成DELETE Request後就會被這個route接收
+app.delete("/students/:_id", async (req, res) => {
+  try {
+    let { _id } = req.params;
+    let deleteResult = await Student.deleteOne({ _id });
+
+    return res.render("student_delete_success");
+  } catch (e) {
+    return res.status(400).render("error", { e });
+  }
+});
+
 app.listen(3000, () => {
   console.log("伺服器正在聆聽port 3000...");
 });

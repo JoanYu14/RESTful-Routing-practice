@@ -13,6 +13,10 @@
         text-align: center; /* 讓文字置中 */
         padding: 2px; /* 讓content部分與border有2px的距離 */
       }
+
+      #delete {
+        display: inline; /* id="delete"的element是一個form標籤，原本的display是block，但因為裡面只有一個button，我希望與其他a標籤同行就好 */
+      }
     </style>
   </head>
   <body>
@@ -46,5 +50,19 @@
     <a href="/students/<%= document._id %>/edit">更新學生資料</a>
     <!-- 點擊這個連結就是對localhost:3000這個server中的/students這個route寄送一個GET request -->
     <a href="/students">回到學生首頁</a>
+
+    <!-- 這個POST Request寄到server後會被method-overrite的中介軟體處理變成DELETE Request -->
+    <form
+      method="POST"
+      action="/students/<%= document._id %>?_method=DELETE"
+      id="delete"
+    >
+      <!-- return confirm()會彈出確定與取消的選項，按取消的話就不會送出表單 -->
+      <button
+        onclick="return confirm('是否確定要刪除要刪除<%= document.name %>的資料')"
+      >
+        刪除
+      </button>
+    </form>
   </body>
 </html>
